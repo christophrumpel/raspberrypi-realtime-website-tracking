@@ -94,16 +94,12 @@ def lcd_toggle_enable():
 def lcd_string(message,line):
   # Send string to display
 
-
-
-
   message = message.ljust(LCD_WIDTH," ")
 
   lcd_byte(line, LCD_CMD)
 
   for i in range(LCD_WIDTH):
     lcd_byte(ord(message[i]),LCD_CHR)
-
 
 def main(city, country):
     # Main program block
@@ -117,10 +113,8 @@ def main(city, country):
     GPIO.setup(LCD_D6, GPIO.OUT) # DB6
     GPIO.setup(LCD_D7, GPIO.OUT) # DB7
 
-
     # Initialise display
     lcd_init()
-
 
     # Send some test
     lcd_string("WELCOME",LCD_LINE_1)
@@ -147,10 +141,10 @@ def _callback(m, channel):
     if m['led'] == 1:
         print('User is active')
 
-
+        # Send data to the display
         main(m['city'], m['country'])
-          
-
+      
+        # Turn the LED on and off to make it blink
         for i in range(6):
             GPIO.output(LED_PIN,True)
             time.sleep(0.5)
