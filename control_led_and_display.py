@@ -152,7 +152,6 @@ def _callback(m, channel):
             time.sleep(0.5)
             GPIO.output(LED_PIN,True)
         
-
     elif m['led'] == 0:
             GPIO.output(LED_PIN,False)
             print('NO User is active')
